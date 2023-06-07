@@ -8,7 +8,7 @@ export class BaseController {
 
   public info(req: Request, res: Response) {
     res.status(200).json({
-      name: 'API REST - Finan360',
+      name: 'API REST - Biblioteca',
       mode: 'development',
       version: '1.0.0',
     });
