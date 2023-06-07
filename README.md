@@ -21,4 +21,4 @@ Esta API esta sendo desenvolvida com as seguintes tecnologias:
 
 ## 💻 Projeto <br/>
 
-A API BIBLIOTECA esta sendo criada para a gestão de bibliotecas.
+A API BIBLIOTECA esta sendo criada para a gestão de bibliotecas virtuais.
