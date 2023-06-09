@@ -1,0 +1,34 @@
+version: '3.0'
+services:
+  # app:
+  #   image: node:16
+  #   #restart: always
+  #   container_name: api-secretaria
+  #   command: [sh, -c, 'su node -c "npm install && npm run migration:up && npm run start:dev"']
+  #   volumes:
+  #     - .:/code
+  #   working_dir: /code
+  #   env_file: 
+  #     - .env
+  #   ports:
+  #     - "${API_PORT}:${API_PORT}"
+  #   depends_on: 
+  #     - mariadb
+  #   networks:
+  #     - escolas-conectadas-net
+
+  mysql:
+    image: mysql
+    container_name: service-mysql
+    #restart: always
+    command: [mysqld, --default-authentication-plugin=mysql_native_password, --character-set-server=utf8mb4, --collation-server=utf8mb4_unicode_ci, --innodb_monitor_enable=all, --max-connections=1001]
+    environment:
+      MYSQL_DATABASE: test_db
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysqldata-volume:/var/lib/mysql
+
+volumes:
+  mysqldata-volume:
