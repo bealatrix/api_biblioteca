@@ -13,4 +13,5 @@ export const AppDataSource = new DataSource({
   entities: ['src/api/components/**/*.entity{.ts,.js}'],
   migrations: [],
   subscribers: [],
+  insecureAuth: true,
 });
