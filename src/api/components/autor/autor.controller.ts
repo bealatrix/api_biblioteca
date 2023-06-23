@@ -33,10 +33,12 @@ export class AutorController {
     // const cod = req.params.cod;
     const { cod } = req.params;
 
-    const autor = await AppDataSource.manager.findOneBy(Autor, {
-      id_autor: Number(cod),
+    const autor = await AppDataSource.manager.findOne(Autor, {
+      where: {
+        id_autor: Number(cod),
+      },
     });
-
+    
     if (autor == null) {
       return res.status(404).json({ erro: "Autor não encontrado!" });
     }
@@ -48,15 +50,13 @@ export class AutorController {
       perfil,
     } = req.body;
 
-    let aut = new Autor();
-    aut.nome = nome;
-    aut.nacionalidade = nacionalidade;
-    aut.data_nascimento = data_nascimento;
-    aut.perfil = perfil;
+    autor.nome = nome;
+    autor.nacionalidade = nacionalidade;
+    autor.data_nascimento = data_nascimento;
+    autor.perfil = perfil;
 
-    const autor_salvo = await AppDataSource.manager.save(autor);
-
-    return res.json(autor_salvo);
+    await AppDataSource.manager.save(autor);
+    return res.json(autor);
   }
 
   public async destroy(req: Request, res: Response) {

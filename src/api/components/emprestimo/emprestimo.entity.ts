@@ -11,7 +11,7 @@ export class Emprestimo extends BaseEntity{
   data_hora_emprestimo!: Date ;
 
   @Column()
-  isdata_previsao_entregabn!: Date;
+  data_previsao_entrega!: Date;
 
   @Column()
   data_entregue!: Date;

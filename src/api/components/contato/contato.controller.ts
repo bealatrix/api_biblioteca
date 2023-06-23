@@ -48,11 +48,10 @@ export class ContatoController {
       telefone,
     } = req.body;
 
-    let cont = new Contato();
-    cont.rede_social = rede_social;
-    cont.email = email;
-    cont.celular = celular;
-    cont.telefone = telefone;
+    contato.rede_social = rede_social;
+    contato.email = email;
+    contato.celular = celular;
+    contato.telefone = telefone;
 
     const contato_salvo = await AppDataSource.manager.save(contato);
 

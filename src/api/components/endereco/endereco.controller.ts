@@ -60,15 +60,14 @@ export class EnderecoController {
       complemento,
     } = req.body;
 
-    let end = new Endereco();
-    end.numero = numero;
-    end.bairro = bairro;
-    end.cidade = cidade;
-    end.estado = estado;
-    end.cep = cep;
-    end.rua = rua;
-    end.pais = pais;
-    end.complemento = complemento;
+    endereco.numero = numero;
+    endereco.bairro = bairro;
+    endereco.cidade = cidade;
+    endereco.estado = estado;
+    endereco.cep = cep;
+    endereco.rua = rua;
+    endereco.pais = pais;
+    endereco.complemento = complemento;
 
     const endereco_salvo = await AppDataSource.manager.save(endereco);
 

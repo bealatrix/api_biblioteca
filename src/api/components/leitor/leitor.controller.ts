@@ -69,24 +69,23 @@ export class LeitorController {
       endereco_id,
     } = req.body;
 
-    let lei = new Leitor();
-    lei.nome = nome;
-    lei.cpf = cpf;
-    lei.rg = rg;
-    lei.data_nascimento = data_nascimento;
-    lei.sexo = sexo;
+    leitor.nome = nome;
+    leitor.cpf = cpf;
+    leitor.rg = rg;
+    leitor.data_nascimento = data_nascimento;
+    leitor.sexo = sexo;
 
     const contato = await AppDataSource.manager.findOne(Contato, contato_id);
     if (!contato) {
       return res.status(404).json({ erro: "Contato não encontrado!" });
     }
-    lei.contato = contato;
+    leitor.contato = contato;
   
     const endereco = await AppDataSource.manager.findOne(Endereco, endereco_id);
     if (!endereco) {
       return res.status(404).json({ erro: "Endereco não encontrado!" });
     }
-    lei.endereco = endereco;
+    leitor.endereco = endereco;
 
     const leitor_salvo = await AppDataSource.manager.save(leitor);
 
