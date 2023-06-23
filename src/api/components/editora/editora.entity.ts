@@ -1,26 +1,17 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('livro')
-export class Livro {
+@Entity('editora')
+export class Editora {
   @PrimaryGeneratedColumn()
   id!: number;
 
   @Column()
-  sinopse!: string;
+  razao_social!: string;
 
   @Column()
-  isbn!: string;
+  nome_fantasia!: string;
 
   @Column()
-  titulo!: string;
-
-  @Column()
-  quantidade_exemplares!: string;
-
-  @Column()
-  ano_publicacao!: Date;
-
-  @Column()
-  exemplares_disponivel!: Date;
+  cnpj!: string;
 
 }
