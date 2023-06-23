@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import { AppDataSource } from "../../../config/database/mysql-datasource.config";
 import { Leitor } from "./leitor.entity";
+import { Contato } from "../contato/contato.entity";
+import { Endereco } from "../endereco/endereco.entity";
 
 export class LeitorController {
   public async list(req: Request, res: Response) {
@@ -17,6 +19,8 @@ export class LeitorController {
       rg,
       data_nascimento,
       sexo,
+      id_contato,
+      id_endereco,
     } = req.body;
 
     let lei = new Leitor();
@@ -25,6 +29,18 @@ export class LeitorController {
     lei.rg = rg;
     lei.data_nascimento = data_nascimento;
     lei.sexo = sexo;
+
+    const contato = await AppDataSource.manager.findOne(Contato, id_contato);
+    if (!contato) {
+      return res.status(404).json({ erro: "Contato não encontrado!" });
+    }
+    lei.contato = contato;
+  
+    const endereco = await AppDataSource.manager.findOne(Endereco, id_endereco);
+    if (!endereco) {
+      return res.status(404).json({ erro: "Endereco não encontrado!" });
+    }
+    lei.endereco = endereco;
 
     const _lei = await AppDataSource.manager.save(lei);
 
@@ -49,6 +65,8 @@ export class LeitorController {
       rg,
       data_nascimento,
       sexo,
+      id_contato,
+      id_endereco,
     } = req.body;
 
     let lei = new Leitor();
@@ -57,6 +75,18 @@ export class LeitorController {
     lei.rg = rg;
     lei.data_nascimento = data_nascimento;
     lei.sexo = sexo;
+
+    const contato = await AppDataSource.manager.findOne(Contato, id_contato);
+    if (!contato) {
+      return res.status(404).json({ erro: "Contato não encontrado!" });
+    }
+    lei.contato = contato;
+  
+    const endereco = await AppDataSource.manager.findOne(Endereco, id_endereco);
+    if (!endereco) {
+      return res.status(404).json({ erro: "Endereco não encontrado!" });
+    }
+    lei.endereco = endereco;
 
     const leitor_salvo = await AppDataSource.manager.save(leitor);
 

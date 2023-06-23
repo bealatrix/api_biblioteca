@@ -1,6 +1,6 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { Autor } from '../autor/autor.entity';
-import { Editora } from '../editora/editora.entity';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Endereco } from '../endereco/endereco.entity';
+import { Contato } from '../contato/contato.entity';
 
 @Entity('Leitor')
 export class Leitor extends BaseEntity{
@@ -22,4 +22,15 @@ export class Leitor extends BaseEntity{
   @Column()
   sexo!: string;
 
+  @ManyToOne(() => Endereco, endereco => endereco.leitor)
+  endereco: Endereco;
+  
+  @ManyToOne(() => Contato, contato => contato.leitor)
+  contato: Contato;
+
+  constructor() {
+    super();
+    this.endereco = new Endereco();
+    this.contato = new Contato();
+  }
 }

@@ -30,4 +30,10 @@ export class Livro extends BaseEntity{
 
   @ManyToOne(() => Editora, editora => editora.livros)
   editora: Editora;
+
+  constructor() {
+    super();
+    this.autor = new Autor();
+    this.editora = new Editora();
+  }
 }

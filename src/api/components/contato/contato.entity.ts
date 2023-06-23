@@ -1,7 +1,8 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Leitor } from '../leitor/leitor.entity';
 
 @Entity('Contato')
-export class Contato {
+export class Contato extends BaseEntity {
   @PrimaryGeneratedColumn()
   id_contato!: number;
 
@@ -16,4 +17,12 @@ export class Contato {
 
   @Column()
   telefone!: string;
+
+  @OneToMany(() => Leitor, leitor => leitor.contato)
+  leitor: Leitor[];
+
+  constructor() {
+    super();
+    this.leitor = [];
+  }
 }
