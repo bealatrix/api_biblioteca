@@ -1,4 +1,4 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
 import { Livro } from '../livro/livro.entity';
 
 @Entity('editora')
@@ -15,11 +15,6 @@ export class Editora extends BaseEntity{
   @Column()
   cnpj!: string;
 
-  @OneToMany(() => Livro, livro => livro.autor)
-  livros: Livro[];
-
-  constructor() {
-    super();
-    this.livros = [];
-  }
+  @OneToOne(() => Livro, livro => livro.autor)
+  livros?: Livro;
 }

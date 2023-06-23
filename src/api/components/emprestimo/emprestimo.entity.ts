@@ -1,7 +1,9 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Leitor } from '../leitor/leitor.entity';
+import { Livro } from '../livro/livro.entity';
 
 @Entity('emprestimo')
-export class Emprestimo {
+export class Emprestimo extends BaseEntity{
   @PrimaryGeneratedColumn()
   id_emprestimo!: number;
 
@@ -16,5 +18,17 @@ export class Emprestimo {
 
   @Column()
   data_hora_solicitacao!: Date;
+
+  @ManyToOne(() => Leitor, leitor => leitor.emprestimo)
+  leitor: Leitor;
+  
+  @ManyToOne(() => Livro, livro => livro.emprestimo)
+  livro: Livro;
+
+  constructor() {
+    super();
+    this.leitor = new Leitor();
+    this.livro = new Livro();
+  }
 
 }

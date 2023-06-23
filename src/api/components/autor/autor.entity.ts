@@ -1,5 +1,6 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToOne } from 'typeorm';
 import { Livro } from '../livro/livro.entity';
+
 
 @Entity('autor')
 export class Autor extends BaseEntity{
@@ -18,11 +19,6 @@ export class Autor extends BaseEntity{
   @Column()
   perfil!: string;
 
-  @OneToMany(() => Livro, livro => livro.editora)
-  livros: Livro[];
-
-  constructor() {
-    super();
-    this.livros = [];
-  }
+  @OneToOne(() => Livro, livro => livro.editora)
+  livros?: Livro;
 }

@@ -1,4 +1,4 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, OneToOne  } from 'typeorm';
 import { Leitor } from '../leitor/leitor.entity';
 
 @Entity('Endereco')
@@ -30,11 +30,7 @@ export class Endereco extends BaseEntity{
   @Column()
   complemento!: string;
 
-  @OneToMany(() => Leitor, leitor => leitor.endereco)
-  leitor: Leitor[];
+  @OneToOne(() => Leitor, leitor => leitor.endereco)
+  leitor?: Leitor;
 
-  constructor() {
-    super();
-    this.leitor = [];
-  }
 }

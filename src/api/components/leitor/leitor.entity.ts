@@ -1,6 +1,7 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToOne } from 'typeorm';
 import { Endereco } from '../endereco/endereco.entity';
 import { Contato } from '../contato/contato.entity';
+import { Emprestimo } from '../emprestimo/emprestimo.entity';
 
 @Entity('Leitor')
 export class Leitor extends BaseEntity{
@@ -33,4 +34,7 @@ export class Leitor extends BaseEntity{
     this.endereco = new Endereco();
     this.contato = new Contato();
   }
+
+  @OneToOne(() => Emprestimo, emprestimo => emprestimo.leitor)
+  emprestimo?: Emprestimo;
 }

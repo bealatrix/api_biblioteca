@@ -1,4 +1,4 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
 import { Leitor } from '../leitor/leitor.entity';
 
 @Entity('Contato')
@@ -18,11 +18,7 @@ export class Contato extends BaseEntity {
   @Column()
   telefone!: string;
 
-  @OneToMany(() => Leitor, leitor => leitor.contato)
-  leitor: Leitor[];
+  @OneToOne(() => Leitor, leitor => leitor.contato)
+  leitor?: Leitor;
 
-  constructor() {
-    super();
-    this.leitor = [];
-  }
 }
