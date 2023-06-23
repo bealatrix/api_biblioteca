@@ -6,21 +6,21 @@ export class Livro {
   id!: number;
 
   @Column()
-  titulo!: string;
-
-  @Column()
-  autor!: string;
-
-  @Column()
-  categoria!: string;
-
-  @Column()
   sinopse!: string;
 
   @Column()
-  avaliacao_dos_leitores!: string;
+  isbn!: string;
 
   @Column()
-  data_publicacao!: Date;
+  titulo!: string;
+
+  @Column()
+  quantidade_exemplares!: string;
+
+  @Column()
+  ano_publicacao!: Date;
+
+  @Column()
+  exemplares_disponivel!: Date;
 
 }

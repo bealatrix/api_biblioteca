@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 CREATE DATABASE test_db;
 USE test_db;
 
@@ -74,3 +75,6 @@ CREATE TABLE emprestimo (
     FOREIGN KEY(pessoa_id) REFERENCES pessoa (id),
     FOREIGN KEY(livro_id) REFERENCES livro (id)
 );
+=======
+
+>>>>>>> b14ab8262ec6afbb5f5cce3c2642a5c78920d2c3
