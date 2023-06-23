@@ -12,7 +12,7 @@ export class Autor {
   nacionalidade!: string;
 
   @Column({ name: 'data_nascimento' })
-  dataNascimento!: string;
+  data_nascimento!: string;
 
   @Column()
   perfil!: string;

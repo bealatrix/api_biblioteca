@@ -1,31 +1,97 @@
-import { Request, Response } from 'express';
+import { Request, Response } from "express";
+import { AppDataSource } from "../../../config/database/mysql-datasource.config";
+import { Autor } from "./autor.entity";
 
 export class AutorController {
-  public getAll(req: Request, res: Response): void {
-    // Implemente a lógica para obter todos os autores
-    res.json({ message: 'Obter todos os autores' });
+  public async list(req: Request, res: Response) {
+    const autor = await AppDataSource.manager.find(Autor);
+
+    return res.status(200).json({ dados: autor, total: autor.length });
   }
 
-  public getById(req: Request, res: Response): void {
-    const { id } = req.params;
-    // Implemente a lógica para obter um autor pelo ID
-    res.json({ message: `Obter autor pelo ID ${id}` });
+  public async create(req: Request, res: Response) {
+
+    let {
+      nome,
+      nacionalidade,
+      titulo,
+      data_nascimento,
+      perfil,
+    } = req.body;
+
+    let liv = new Livro();
+    liv.nome = nome;
+    liv.nacionalidade = nacionalidade;
+    liv.titulo = titulo;
+    liv.quantidade_exemplares = quantidade_exemplares;
+    liv.ano_publicacao = ano_publicacao;
+    liv.exemplares_disponivel = exemplares_disponivel;
+
+    const _liv = await AppDataSource.manager.save(liv);
+
+    return res.status(201).json(_liv);
   }
 
-  public create(req: Request, res: Response): void {
-    // Implemente a lógica para criar um novo autor
-    res.json({ message: 'Criar um novo autor' });
+  public async update(req: Request, res: Response) {
+    // const cod = req.params.cod;
+    const { cod } = req.params;
+
+    const livro = await AppDataSource.manager.findOneBy(Livro, {
+      id: Number(cod),
+    });
+
+    if (livro == null) {
+      return res.status(404).json({ erro: "Livro não encontrado!" });
+    }
+
+    let {
+      sinopse,
+      isbn,
+      titulo,
+      quantidade_exemplares,
+      ano_publicacao,
+      exemplares_disponivel,
+    } = req.body;
+
+    livro.sinopse = sinopse;
+    livro.isbn = isbn;
+    livro.titulo = titulo;
+    livro.quantidade_exemplares = quantidade_exemplares;
+    livro.ano_publicacao = ano_publicacao;
+    livro.exemplares_disponivel = exemplares_disponivel;
+
+    const livro_salvo = await AppDataSource.manager.save(livro);
+
+    return res.json(livro_salvo);
   }
 
-  public update(req: Request, res: Response): void {
-    const { id } = req.params;
-    // Implemente a lógica para atualizar um autor pelo ID
-    res.json({ message: `Atualizar autor pelo ID ${id}` });
+  public async destroy(req: Request, res: Response) {
+    const { cod } = req.params;
+
+    const livro = await AppDataSource.manager.findOneBy(Livro, {
+      id: Number(cod),
+    });
+
+    if (livro == null) {
+      return res.status(404).json({ erro: "Livro não encontrado!" });
+    }
+    
+    await AppDataSource.manager.delete(Livro, livro);
+
+    return res.status(204).json();
   }
 
-  public delete(req: Request, res: Response): void {
-    const { id } = req.params;
-    // Implemente a lógica para deletar um autor pelo ID
-    res.json({ message: `Deletar autor pelo ID ${id}` });
+  public async show(req: Request, res: Response) {
+    const { cod } = req.params;
+
+    const livro = await AppDataSource.manager.findOneBy(Livro, {
+      id: Number(cod),
+    });
+
+    if (livro == null) {
+      return res.status(404).json({ erro: "Livro não encontrado!" });
+    }
+
+    return res.json(livro);
   }
 }
