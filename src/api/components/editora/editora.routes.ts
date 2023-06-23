@@ -1,13 +1,13 @@
 import { Router } from 'express';
-import { EnderecoController } from './endereco.controller';
+import { EditoraController } from './editora.controller';
 
-export class EnderecoRoutes {
+export class EditoraRoutes {
   private router: Router = Router();
 
-  private controller: EnderecoController;
+  private controller:  EditoraController;
 
   constructor() {
-    this.controller = new EnderecoController();
+    this.controller = new  EditoraController();
     this.init();
   }
 
