@@ -65,8 +65,8 @@ export class LeitorController {
       rg,
       data_nascimento,
       sexo,
-      id_contato,
-      id_endereco,
+      contato_id,
+      endereco_id,
     } = req.body;
 
     let lei = new Leitor();
@@ -76,13 +76,13 @@ export class LeitorController {
     lei.data_nascimento = data_nascimento;
     lei.sexo = sexo;
 
-    const contato = await AppDataSource.manager.findOne(Contato, id_contato);
+    const contato = await AppDataSource.manager.findOne(Contato, contato_id);
     if (!contato) {
       return res.status(404).json({ erro: "Contato não encontrado!" });
     }
     lei.contato = contato;
   
-    const endereco = await AppDataSource.manager.findOne(Endereco, id_endereco);
+    const endereco = await AppDataSource.manager.findOne(Endereco, endereco_id);
     if (!endereco) {
       return res.status(404).json({ erro: "Endereco não encontrado!" });
     }

@@ -62,8 +62,8 @@ export class EmprestimoController {
       isdata_previsao_entregabn,
       data_entregue,
       data_hora_solicitacao,
-      id_leitor,
-      id_livro,
+      leitor_id,
+      livro_id,
     } = req.body;
 
     let emp = new Emprestimo ();
@@ -72,13 +72,13 @@ export class EmprestimoController {
     emp.data_entregue = data_entregue;
     emp.data_hora_solicitacao = data_hora_solicitacao;
 
-    const leitor = await AppDataSource.manager.findOne(Leitor, id_leitor);
+    const leitor = await AppDataSource.manager.findOne(Leitor, leitor_id);
     if (!leitor) {
       return res.status(404).json({ erro: "Leitor não encontrado!" });
     }
     emp.leitor = leitor;
   
-    const livro = await AppDataSource.manager.findOne(Livro, id_livro);
+    const livro = await AppDataSource.manager.findOne(Livro, livro_id);
     if (!livro) {
       return res.status(404).json({ erro: "Livro não encontrado!" });
     }

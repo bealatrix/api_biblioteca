@@ -21,8 +21,8 @@ export class LivroController {
       quantidade_exemplares,
       ano_publicacao,
       exemplares_disponivel,
-      id_autor,
-      id_editora,
+      autor_id,
+      editora_id,
     } = req.body;
 
     let liv = new Livro();
@@ -33,13 +33,13 @@ export class LivroController {
     liv.ano_publicacao = ano_publicacao;
     liv.exemplares_disponivel = exemplares_disponivel;
 
-    const autor = await AppDataSource.manager.findOne(Autor, id_autor);
+    const autor = await AppDataSource.manager.findOne(Autor, autor_id);
     if (!autor) {
       return res.status(404).json({ erro: "Autor não encontrado!" });
     }
     liv.autor = autor;
   
-    const editora = await AppDataSource.manager.findOne(Editora, id_editora);
+    const editora = await AppDataSource.manager.findOne(Editora, editora_id);
     if (!editora) {
       return res.status(404).json({ erro: "Editora não encontrada!" });
     }
@@ -69,8 +69,8 @@ export class LivroController {
       quantidade_exemplares,
       ano_publicacao,
       exemplares_disponivel,
-      id_autor,
-      id_editora,
+      autor_id,
+      editora_id,
     } = req.body;
 
     livro.sinopse = sinopse;
@@ -80,13 +80,13 @@ export class LivroController {
     livro.ano_publicacao = ano_publicacao;
     livro.exemplares_disponivel = exemplares_disponivel;
     
-    const autor = await AppDataSource.manager.findOne(Autor, id_autor);
+    const autor = await AppDataSource.manager.findOne(Autor, autor_id);
     if (!autor) {
       return res.status(404).json({ erro: "Autor não encontrado!" });
     }
     livro.autor = autor;
   
-    const editora = await AppDataSource.manager.findOne(Editora, id_editora);
+    const editora = await AppDataSource.manager.findOne(Editora, editora_id);
     if (!editora) {
       return res.status(404).json({ erro: "Editora não encontrada!" });
     }
