@@ -75,6 +75,29 @@ CREATE TABLE emprestimo (
     FOREIGN KEY(pessoa_id) REFERENCES pessoa (id),
     FOREIGN KEY(livro_id) REFERENCES livro (id)
 );
+
+INSERT INTO autor (nome, nacionalidade, data_nascimento, perfil)
+VALUES ('Autor 1', 'Nacionalidade 1', '1990-01-01', 'Perfil do Autor 1');
+
+INSERT INTO editora (razao_social, nome_fantasia, cnpj)
+VALUES ('Razão Social 1', 'Nome Fantasia 1', '1234567890');
+
+INSERT INTO livro (sinopse, isbn, titulo, quantidade_exemplares, ano_publicacao, exemplares_disponivel, autor_id, editora_id)
+VALUES ('Sinopse do Livro 1', '1234567890', 'Título do Livro 1', 10, '2022-01-01', 10, 1, 1);
+
+INSERT INTO endereco (numero, bairro, cidade, estado, cep, rua, pais, complemento)
+VALUES ('123', 'Bairro 1', 'Cidade 1', 'Estado 1', '12345-678', 'Rua 1', 'País 1', 'Complemento 1');
+
+INSERT INTO contato (rede_social, email, celular, telefone)
+VALUES ('Rede Social 1', 'email1@example.com', '1234567890', '0987654321');
+
+INSERT INTO pessoa (nome, cpf, rg, data_nascimento, sexo, contato_id, endereco_id)
+VALUES ('Pessoa 1', '1234567890', '9876543210', '1990-01-01', 'M', 1, 1);
+
+INSERT INTO emprestimo (data_hora_emprestimo, data_previsao_entrega, data_entregue, data_hora_solicitacao, pessoa_id, livro_id)
+VALUES ('2022-01-01 10:00:00', '2022-01-10', NULL, '2022-01-01 09:00:00', 1, 1);
+
+
 =======
 
 >>>>>>> b14ab8262ec6afbb5f5cce3c2642a5c78920d2c3
