@@ -4,10 +4,10 @@ import { EditoraController } from './editora.controller';
 export class EditoraRoutes {
   private router: Router = Router();
 
-  private controller:  EditoraController;
+  private controller: EditoraController;
 
   constructor() {
-    this.controller = new  EditoraController();
+    this.controller = new EditoraController();
     this.init();
   }
 
