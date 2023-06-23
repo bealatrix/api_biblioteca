@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import { AppDataSource } from "../../../config/database/mysql-datasource.config";
 import { Emprestimo } from "./emprestimo.entity";
+import { Leitor } from "../leitor/leitor.entity";
+import { Livro } from "../livro/livro.entity";
 
 export class EmprestimoController {
   public async list(req: Request, res: Response) {
@@ -16,6 +18,8 @@ export class EmprestimoController {
       isdata_previsao_entregabn,
       data_entregue,
       data_hora_solicitacao,
+      id_leitor,
+      id_livro,
     } = req.body;
 
     let emp = new Emprestimo ();
@@ -23,6 +27,18 @@ export class EmprestimoController {
     emp.isdata_previsao_entregabn = isdata_previsao_entregabn;
     emp.data_entregue = data_entregue;
     emp.data_hora_solicitacao = data_hora_solicitacao;
+
+    const leitor = await AppDataSource.manager.findOne(Leitor, id_leitor);
+    if (!leitor) {
+      return res.status(404).json({ erro: "Contato não encontrado!" });
+    }
+    emp.leitor = leitor;
+  
+    const livro = await AppDataSource.manager.findOne(Livro, id_livro);
+    if (!livro) {
+      return res.status(404).json({ erro: "Endereco não encontrado!" });
+    }
+    emp.livro = livro;
 
     const _emp = await AppDataSource.manager.save(emp);
 
@@ -46,6 +62,8 @@ export class EmprestimoController {
       isdata_previsao_entregabn,
       data_entregue,
       data_hora_solicitacao,
+      id_leitor,
+      id_livro,
     } = req.body;
 
     let emp = new Emprestimo ();
@@ -54,6 +72,18 @@ export class EmprestimoController {
     emp.data_entregue = data_entregue;
     emp.data_hora_solicitacao = data_hora_solicitacao;
 
+    const leitor = await AppDataSource.manager.findOne(Leitor, id_leitor);
+    if (!leitor) {
+      return res.status(404).json({ erro: "Contato não encontrado!" });
+    }
+    emp.leitor = leitor;
+  
+    const livro = await AppDataSource.manager.findOne(Livro, id_livro);
+    if (!livro) {
+      return res.status(404).json({ erro: "Endereco não encontrado!" });
+    }
+    emp.livro = livro;
+    
     const emprestimo_salvo = await AppDataSource.manager.save(emprestimo);
 
     return res.json(emprestimo_salvo);
