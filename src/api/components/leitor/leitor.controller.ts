@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { AppDataSource } from "../../../config/database/mysql-datasource.config";
 import { Leitor } from "./leitor.entity";
-import { Livro } from "../livro/livro.entity";
 
 export class LeitorController {
   public async list(req: Request, res: Response) {
