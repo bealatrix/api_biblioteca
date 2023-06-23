@@ -85,6 +85,10 @@ VALUES ('Razão Social 1', 'Nome Fantasia 1', '1234567890');
 INSERT INTO livro (sinopse, isbn, titulo, quantidade_exemplares, ano_publicacao, exemplares_disponivel, autor_id, editora_id)
 VALUES ('Sinopse do Livro 1', '1234567890', 'Título do Livro 1', 10, '2022-01-01', 10, 1, 1);
 
+INSERT INTO livro (sinopse, isbn, titulo, quantidade_exemplares, ano_publicacao, exemplares_disponivel, autor_id, editora_id)
+VALUES ('Sinopse do Livro 2', '1234567890', 'Título do Livro 1', 10, '2022-01-01', 10, 1, 1);
+
+
 INSERT INTO endereco (numero, bairro, cidade, estado, cep, rua, pais, complemento)
 VALUES ('123', 'Bairro 1', 'Cidade 1', 'Estado 1', '12345-678', 'Rua 1', 'País 1', 'Complemento 1');
 
