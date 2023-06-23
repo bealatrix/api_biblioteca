@@ -26,17 +26,17 @@ export class Livro extends BaseEntity{
   @Column()
   exemplares_disponivel!: Date;
 
-  @ManyToOne(() => Autor, autor => autor.livros)
-  autor: Autor;
-
-  @ManyToOne(() => Editora, editora => editora.livros)
-  editora: Editora;
-
   constructor() {
     super();
     this.autor = new Autor();
     this.editora = new Editora();
   }
+
+  @ManyToOne(() => Autor, autor => autor.livros)
+  autor: Autor;
+
+  @ManyToOne(() => Editora, editora => editora.livros)
+  editora: Editora;
 
   @OneToOne(() => Emprestimo, emprestimo => emprestimo.livro)
   emprestimo?: Emprestimo;

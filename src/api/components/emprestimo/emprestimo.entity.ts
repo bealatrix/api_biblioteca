@@ -19,16 +19,16 @@ export class Emprestimo extends BaseEntity{
   @Column()
   data_hora_solicitacao!: Date;
 
+  constructor() {
+    super();
+    this.leitor = new Leitor();
+    this.livro = new Livro();
+  }
   @ManyToOne(() => Leitor, leitor => leitor.emprestimo)
   leitor: Leitor;
   
   @ManyToOne(() => Livro, livro => livro.emprestimo)
   livro: Livro;
 
-  constructor() {
-    super();
-    this.leitor = new Leitor();
-    this.livro = new Livro();
-  }
 
 }

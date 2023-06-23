@@ -23,17 +23,17 @@ export class Leitor extends BaseEntity{
   @Column()
   sexo!: string;
 
-  @ManyToOne(() => Endereco, endereco => endereco.leitor)
-  endereco: Endereco;
-  
-  @ManyToOne(() => Contato, contato => contato.leitor)
-  contato: Contato;
-
   constructor() {
     super();
     this.endereco = new Endereco();
     this.contato = new Contato();
   }
+
+  @ManyToOne(() => Endereco, endereco => endereco.leitor)
+  endereco: Endereco;
+  
+  @ManyToOne(() => Contato, contato => contato.leitor)
+  contato: Contato;
 
   @OneToOne(() => Emprestimo, emprestimo => emprestimo.leitor)
   emprestimo?: Emprestimo;
