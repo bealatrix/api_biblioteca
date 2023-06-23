@@ -30,13 +30,13 @@ export class EmprestimoController {
 
     const leitor = await AppDataSource.manager.findOne(Leitor, id_leitor);
     if (!leitor) {
-      return res.status(404).json({ erro: "Contato não encontrado!" });
+      return res.status(404).json({ erro: "Leitor não encontrado!" });
     }
     emp.leitor = leitor;
   
     const livro = await AppDataSource.manager.findOne(Livro, id_livro);
     if (!livro) {
-      return res.status(404).json({ erro: "Endereco não encontrado!" });
+      return res.status(404).json({ erro: "Livro não encontrado!" });
     }
     emp.livro = livro;
 
@@ -74,16 +74,16 @@ export class EmprestimoController {
 
     const leitor = await AppDataSource.manager.findOne(Leitor, id_leitor);
     if (!leitor) {
-      return res.status(404).json({ erro: "Contato não encontrado!" });
+      return res.status(404).json({ erro: "Leitor não encontrado!" });
     }
     emp.leitor = leitor;
   
     const livro = await AppDataSource.manager.findOne(Livro, id_livro);
     if (!livro) {
-      return res.status(404).json({ erro: "Endereco não encontrado!" });
+      return res.status(404).json({ erro: "Livro não encontrado!" });
     }
     emp.livro = livro;
-    
+
     const emprestimo_salvo = await AppDataSource.manager.save(emprestimo);
 
     return res.json(emprestimo_salvo);
