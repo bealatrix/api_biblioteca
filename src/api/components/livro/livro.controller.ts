@@ -10,31 +10,23 @@ export class LivroController {
   }
 
   public async create(req: Request, res: Response) {
-    //aqui que pegamos o dados para cadastrar uma novo livro
-
-    // let titulo = req.body.titulo;
-    // let autor = req.body.autor;
-    // let categoria = req.body.categoria;
-    // let sinopse = req.body.sinopse;
-    // let avaliacao_dos_leitores = req.body.avaliacao_dos_leitores;
-    // let data_publicacao = req.body.data_publicacao;
 
     let {
-      titulo,
-      autor,
-      categoria,
       sinopse,
-      avaliacao_dos_leitores,
-      data_publicacao,
+      isbn,
+      titulo,
+      quantidade_exemplares,
+      ano_publicacao,
+      exemplares_disponivel,
     } = req.body;
 
     let liv = new Livro();
-    liv.titulo = titulo;
-    liv.autor = autor;
-    liv.categoria = categoria;
     liv.sinopse = sinopse;
-    liv.avaliacao_dos_leitores = avaliacao_dos_leitores;
-    liv.data_publicacao = data_publicacao;
+    liv.isbn = isbn;
+    liv.titulo = titulo;
+    liv.quantidade_exemplares = quantidade_exemplares;
+    liv.ano_publicacao = ano_publicacao;
+    liv.exemplares_disponivel = exemplares_disponivel;
 
     const _liv = await AppDataSource.manager.save(liv);
 
@@ -54,20 +46,20 @@ export class LivroController {
     }
 
     let {
-      titulo,
-      autor,
-      categoria,
       sinopse,
-      avaliacao_dos_leitores,
-      data_publicacao,
+      isbn,
+      titulo,
+      quantidade_exemplares,
+      ano_publicacao,
+      exemplares_disponivel,
     } = req.body;
 
-    livro.titulo = titulo;
-    livro.autor = autor;
-    livro.categoria = categoria;
     livro.sinopse = sinopse;
-    livro.avaliacao_dos_leitores = avaliacao_dos_leitores;
-    livro.data_publicacao = data_publicacao;
+    livro.isbn = isbn;
+    livro.titulo = titulo;
+    livro.quantidade_exemplares = quantidade_exemplares;
+    livro.ano_publicacao = ano_publicacao;
+    livro.exemplares_disponivel = exemplares_disponivel;
 
     const livro_salvo = await AppDataSource.manager.save(livro);
 

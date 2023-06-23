@@ -1,23 +1,19 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('Leitor')
-export class Leitor {
+@Entity('Contato')
+export class Contato {
   @PrimaryGeneratedColumn()
   id!: number;
 
   @Column()
-  nome!: string;
+  rede_social!: string;
 
   @Column()
-  cpf!: string;
+  email!: string;
 
   @Column()
-  rg!: string;
+  celular!: string;
 
   @Column()
-  data_nascimento!: string;
-
-  @Column()
-  sexo!: string;
-
+  telefone!: string;
 }
