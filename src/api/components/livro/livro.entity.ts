@@ -1,9 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Autor } from '../autor/autor.entity';
+import { Editora } from '../editora/editora.entity';
 
 @Entity('livro')
-export class Livro {
+export class Livro extends BaseEntity{
   @PrimaryGeneratedColumn()
-  id!: number;
+  id_livro!: number;
 
   @Column()
   sinopse!: string;
@@ -23,4 +25,9 @@ export class Livro {
   @Column()
   exemplares_disponivel!: Date;
 
+  @ManyToOne(() => Autor, autor => autor.livros)
+  autor: Autor;
+
+  @ManyToOne(() => Editora, editora => editora.livros)
+  editora: Editora;
 }

@@ -32,7 +32,7 @@ export class EditoraController {
     const { cod } = req.params;
 
     const editora = await AppDataSource.manager.findOneBy(Editora, {
-      id: Number(cod),
+      id_editora: Number(cod),
     });
 
     if (editora == null) {
@@ -58,7 +58,7 @@ export class EditoraController {
     const { cod } = req.params;
 
     const editora = await AppDataSource.manager.findOneBy(Editora, {
-      id: Number(cod),
+      id_editora: Number(cod),
     });
 
     if (editora == null) {
@@ -74,7 +74,7 @@ export class EditoraController {
     const { cod } = req.params;
 
     const editora = await AppDataSource.manager.findOneBy(Editora, {
-      id: Number(cod),
+      id_editora: Number(cod),
     });
 
     if (editora == null) {

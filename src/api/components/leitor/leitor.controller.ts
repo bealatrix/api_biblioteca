@@ -36,7 +36,7 @@ export class LeitorController {
     const { cod } = req.params;
 
     const leitor = await AppDataSource.manager.findOneBy(Leitor, {
-      id: Number(cod),
+      id_leitor: Number(cod),
     });
 
     if (leitor == null) {
@@ -67,7 +67,7 @@ export class LeitorController {
     const { cod } = req.params;
 
     const leitor = await AppDataSource.manager.findOneBy(Leitor, {
-      id: Number(cod),
+      id_leitor: Number(cod),
     });
 
     if (leitor == null) {
@@ -83,7 +83,7 @@ export class LeitorController {
     const { cod } = req.params;
 
     const leitor = await AppDataSource.manager.findOneBy(Leitor, {
-      id: Number(cod),
+      id_leitor: Number(cod),
     });
 
     if (leitor == null) {

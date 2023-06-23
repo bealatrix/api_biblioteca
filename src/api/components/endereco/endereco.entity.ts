@@ -3,7 +3,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 @Entity('Endereco')
 export class Endereco {
   @PrimaryGeneratedColumn()
-  id!: number;
+  id_endereco!: number;
 
   @Column()
   numero!: string;

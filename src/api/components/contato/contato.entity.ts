@@ -3,7 +3,7 @@ import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 @Entity('Contato')
 export class Contato {
   @PrimaryGeneratedColumn()
-  id!: number;
+  id_contato!: number;
 
   @Column()
   rede_social!: string;

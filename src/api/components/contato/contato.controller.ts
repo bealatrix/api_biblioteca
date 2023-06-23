@@ -34,7 +34,7 @@ export class ContatoController {
     const { cod } = req.params;
 
     const contato = await AppDataSource.manager.findOneBy(Contato, {
-      id: Number(cod),
+      id_contato: Number(cod),
     });
 
     if (contato == null) {
@@ -63,7 +63,7 @@ export class ContatoController {
     const { cod } = req.params;
 
     const contato = await AppDataSource.manager.findOneBy(Contato, {
-      id: Number(cod),
+      id_contato: Number(cod),
     });
 
     if (contato == null) {
@@ -79,7 +79,7 @@ export class ContatoController {
     const { cod } = req.params;
 
     const contato = await AppDataSource.manager.findOneBy(Contato, {
-      id: Number(cod),
+      id_contato: Number(cod),
     });
 
     if (contato == null) {

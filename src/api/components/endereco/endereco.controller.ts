@@ -42,7 +42,7 @@ export class EnderecoController {
     const { cod } = req.params;
 
     const endereco = await AppDataSource.manager.findOneBy(Endereco, {
-      id: Number(cod),
+      id_endereco: Number(cod),
     });
 
     if (endereco == null) {
@@ -79,7 +79,7 @@ export class EnderecoController {
     const { cod } = req.params;
 
     const endereco = await AppDataSource.manager.findOneBy(Endereco, {
-      id: Number(cod),
+      id_endereco: Number(cod),
     });
 
     if (endereco == null) {
@@ -95,7 +95,7 @@ export class EnderecoController {
     const { cod } = req.params;
 
     const endereco = await AppDataSource.manager.findOneBy(Endereco, {
-      id: Number(cod),
+      id_endereco: Number(cod),
     });
 
     if (endereco == null) {

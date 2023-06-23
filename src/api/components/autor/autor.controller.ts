@@ -14,69 +14,63 @@ export class AutorController {
     let {
       nome,
       nacionalidade,
-      titulo,
       data_nascimento,
       perfil,
     } = req.body;
 
-    let liv = new Livro();
-    liv.nome = nome;
-    liv.nacionalidade = nacionalidade;
-    liv.titulo = titulo;
-    liv.quantidade_exemplares = quantidade_exemplares;
-    liv.ano_publicacao = ano_publicacao;
-    liv.exemplares_disponivel = exemplares_disponivel;
+    let aut = new Autor();
+    aut.nome = nome;
+    aut.nacionalidade = nacionalidade;
+    aut.data_nascimento = data_nascimento;
+    aut.perfil = perfil;
 
-    const _liv = await AppDataSource.manager.save(liv);
+    const _aut = await AppDataSource.manager.save(aut);
 
-    return res.status(201).json(_liv);
+    return res.status(201).json(_aut);
   }
 
   public async update(req: Request, res: Response) {
     // const cod = req.params.cod;
     const { cod } = req.params;
 
-    const livro = await AppDataSource.manager.findOneBy(Livro, {
-      id: Number(cod),
+    const autor = await AppDataSource.manager.findOneBy(Autor, {
+      id_autor: Number(cod),
     });
 
-    if (livro == null) {
-      return res.status(404).json({ erro: "Livro não encontrado!" });
+    if (autor == null) {
+      return res.status(404).json({ erro: "Autor não encontrado!" });
     }
 
     let {
-      sinopse,
-      isbn,
-      titulo,
-      quantidade_exemplares,
-      ano_publicacao,
-      exemplares_disponivel,
+      nome,
+      nacionalidade,
+      data_nascimento,
+      perfil,
     } = req.body;
 
-    livro.sinopse = sinopse;
-    livro.isbn = isbn;
-    livro.titulo = titulo;
-    livro.quantidade_exemplares = quantidade_exemplares;
-    livro.ano_publicacao = ano_publicacao;
-    livro.exemplares_disponivel = exemplares_disponivel;
+    let aut = new Autor();
+    aut.nome = nome;
+    aut.nacionalidade = nacionalidade;
+    aut.data_nascimento = data_nascimento;
+    aut.perfil = perfil;
 
-    const livro_salvo = await AppDataSource.manager.save(livro);
+    const autor_salvo = await AppDataSource.manager.save(autor);
 
-    return res.json(livro_salvo);
+    return res.json(autor_salvo);
   }
 
   public async destroy(req: Request, res: Response) {
     const { cod } = req.params;
 
-    const livro = await AppDataSource.manager.findOneBy(Livro, {
-      id: Number(cod),
+    const autor = await AppDataSource.manager.findOneBy(Autor, {
+      id_autor: Number(cod),
     });
 
-    if (livro == null) {
-      return res.status(404).json({ erro: "Livro não encontrado!" });
+    if (autor == null) {
+      return res.status(404).json({ erro: "Autor não encontrado!" });
     }
     
-    await AppDataSource.manager.delete(Livro, livro);
+    await AppDataSource.manager.delete(Autor, autor);
 
     return res.status(204).json();
   }
@@ -84,14 +78,14 @@ export class AutorController {
   public async show(req: Request, res: Response) {
     const { cod } = req.params;
 
-    const livro = await AppDataSource.manager.findOneBy(Livro, {
-      id: Number(cod),
+    const autor = await AppDataSource.manager.findOneBy(Autor, {
+      id_autor: Number(cod),
     });
 
-    if (livro == null) {
-      return res.status(404).json({ erro: "Livro não encontrado!" });
+    if (autor == null) {
+      return res.status(404).json({ erro: "Autor não encontrado!" });
     }
 
-    return res.json(livro);
+    return res.json(autor);
   }
 }
