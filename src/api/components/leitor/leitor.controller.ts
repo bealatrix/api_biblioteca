@@ -1,24 +1,96 @@
-import { Request, Response } from 'express';
-import { AppDataSource } from '../../../config/database/mysql-datasource.config';
-import { Repository } from 'typeorm';
-import { Leitor } from './leitor.entity';
-
+import { Request, Response } from "express";
+import { AppDataSource } from "../../../config/database/mysql-datasource.config";
+import { Leitor } from "./leitor.entity";
+import { Livro } from "../livro/livro.entity";
 
 export class LeitorController {
-  private readonly repository: Repository<Leitor>;
+  public async list(req: Request, res: Response) {
+    const leitor = await AppDataSource.manager.find(Leitor);
 
-  constructor() {
-    this.repository = AppDataSource.getRepository(Leitor);
-    // console.log(this.repository);
+    return res.status(200).json({ dados: leitor, total: leitor.length });
   }
 
-  public async list(req: Request, res: Response) {
-    const repo = AppDataSource.getRepository(Leitor);
+  public async create(req: Request, res: Response) {
 
-    // console.log(repo);
+    let {
+      nome,
+      cpf,
+      rg,
+      data_nascimento,
+      sexo,
+    } = req.body;
 
-    const leitor = await repo.find();
+    let lei = new Leitor();
+    lei.nome = nome;
+    lei.cpf = cpf;
+    lei.rg = rg;
+    lei.data_nascimento = data_nascimento;
+    lei.sexo = sexo;
 
-    res.status(200).json({ data: leitor });
+    const _lei = await AppDataSource.manager.save(lei);
+
+    return res.status(201).json(_lei);
+  }
+
+  public async update(req: Request, res: Response) {
+    // const cod = req.params.cod;
+    const { cod } = req.params;
+
+    const leitor = await AppDataSource.manager.findOneBy(Leitor, {
+      id: Number(cod),
+    });
+
+    if (leitor == null) {
+      return res.status(404).json({ erro: "Leitor não encontrado!" });
+    }
+
+    let {
+      nome,
+      cpf,
+      rg,
+      data_nascimento,
+      sexo,
+    } = req.body;
+
+    let lei = new Leitor();
+    lei.nome = nome;
+    lei.cpf = cpf;
+    lei.rg = rg;
+    lei.data_nascimento = data_nascimento;
+    lei.sexo = sexo;
+
+    const leitor_salvo = await AppDataSource.manager.save(leitor);
+
+    return res.json(leitor_salvo);
+  }
+
+  public async destroy(req: Request, res: Response) {
+    const { cod } = req.params;
+
+    const leitor = await AppDataSource.manager.findOneBy(Leitor, {
+      id: Number(cod),
+    });
+
+    if (leitor == null) {
+      return res.status(404).json({ erro: "Leitor não encontrado!" });
+    }
+    
+    await AppDataSource.manager.delete(Leitor, leitor);
+
+    return res.status(204).json();
+  }
+
+  public async show(req: Request, res: Response) {
+    const { cod } = req.params;
+
+    const leitor = await AppDataSource.manager.findOneBy(Leitor, {
+      id: Number(cod),
+    });
+
+    if (leitor == null) {
+      return res.status(404).json({ erro: "Leitor não encontrado!" });
+    }
+
+    return res.json(leitor);
   }
 }
