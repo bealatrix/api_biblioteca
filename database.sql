@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 CREATE DATABASE biblioteca_online_db;
 USE biblioteca_online_db;
+=======
+<<<<<<< HEAD
+CREATE DATABASE test_db;
+USE test_db;
+>>>>>>> c3f8507f892e32de2ed1d8256a0057ef58a8670c
 
 CREATE TABLE autor (
     id int not null auto_increment PRIMARY KEY,
@@ -50,7 +56,11 @@ CREATE TABLE contato (
     telefone varchar(255) not null
 );
 
+<<<<<<< HEAD
 CREATE TABLE leitor (
+=======
+CREATE TABLE pessoa (
+>>>>>>> c3f8507f892e32de2ed1d8256a0057ef58a8670c
     id int not null auto_increment PRIMARY KEY,
     nome varchar(255) not null,
     cpf varchar(255) not null,
@@ -95,3 +105,11 @@ VALUES ('Pessoa 1', '1234567890', '9876543210', '1990-01-01', 'M', 1, 1);
 
 INSERT INTO emprestimo (data_hora_emprestimo, data_previsao_entrega, data_entregue, data_hora_solicitacao, pessoa_id, livro_id)
 VALUES ('2022-01-01 10:00:00', '2022-01-10', NULL, '2022-01-01 09:00:00', 1, 1);
+<<<<<<< HEAD
+=======
+
+
+=======
+
+>>>>>>> b14ab8262ec6afbb5f5cce3c2642a5c78920d2c3
+>>>>>>> c3f8507f892e32de2ed1d8256a0057ef58a8670c
