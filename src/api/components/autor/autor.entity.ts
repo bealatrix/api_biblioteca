@@ -1,9 +1,9 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from 'typeorm';
 import { Livro } from '../livro/livro.entity';
 
 
 @Entity('autor')
-export class Autor extends BaseEntity{
+export class Autor {
   @PrimaryGeneratedColumn()
   id_autor!: number;
 
@@ -19,6 +19,6 @@ export class Autor extends BaseEntity{
   @Column()
   perfil!: string;
 
-  @OneToOne(() => Livro, livro => livro.editora)
+  @OneToOne(() => Livro, livro => livro.autor)
   livros?: Livro;
 }
